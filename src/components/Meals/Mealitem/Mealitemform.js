@@ -5,6 +5,7 @@ import cartcontext from '../../../store/cartcontext';
 
 const Mealitemform =(props)=>{
     const cartctx=useContext(cartcontext)
+    console.log('reintilized cartctx',cartctx)
 
     const additemtocart=(event)=>{
         event.preventDefault();
@@ -20,10 +21,10 @@ const Mealitemform =(props)=>{
             <Input label="Amount" input={{
                 id:'amount_'+props.id,
                 type:"number",
-                min:1,
-                max:5,
-                step:1,
-                defaultValue: 1
+                min:"1",
+                max:"5",
+                step:"1",
+                defaultValue:'1'
             }} />
             </div>
             <div>

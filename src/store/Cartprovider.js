@@ -1,13 +1,26 @@
 import cartcontext from "./cartcontext";
 import { useState } from "react";
+import Cart from "../components/Cart/Cart";
 
 const Cartprovider=(props)=>{
     const [items,updateitems]=useState([]);
 
-    const additemhandler=item=>{
-        updateitems([...items,item]);
-        console.log('inside additemhandler', cartcontext)
-    };
+    const additemhandler=(item)=>{
+        const exitstingitem=items.findIndex((cartItem)=>cartItem.id===item.id)
+    
+
+    if (exitstingitem!==-1){
+        const updateItems=[...items];
+        updateItems[exitstingitem].quantity=Number(updateItems[exitstingitem].quantity)+Number(item.quantity)
+    
+
+    updateitems(updateitems);
+}
+else
+{
+    updateitems((prevItems)=>[...prevItems,item]);
+}
+}
 
     const removeitemhandler=id=>{};
 
