@@ -22,14 +22,41 @@ else
 }
 }
 
-    const removeitemhandler=id=>{};
+    const removeitemhandler=(id)=>{
+        const removeItem=items.filter((cartitems)=>cartitems.id!==id);
+        updateitems(removeItem);
+    };
+
+    const addquantitycarthandler=(id)=>{
+        const updatequantity=items.map((cartitems)=>{
+            if(cartitems.id===id){
+                let update=Number(cartitems.quantity);
+                return {...cartitems,quantity:update+1}
+            }
+            return cartitems;
+        })
+        updateitems(updatequantity)
+    }
+
+    const minusquantitycarthandle=(id)=>{
+        const minusquantity=items.map((cartitems)=>{
+            if(cartitems.id===id){
+                let minusquantity=Number(cartitems.quantity);;
+                return {...cartitems,quantity:minusquantity -1}
+            }
+            return cartitems;
+        })
+        updateitems(minusquantity)
+    }
 
 
     const cartContext={
         items: items,
         totalAmount:0,
         addItem:additemhandler,
-        removeItem:removeitemhandler 
+        removeItem:removeitemhandler ,
+        addquantity:addquantitycarthandler,
+        minusquantity:minusquantitycarthandle
     }
 
     return <cartcontext.Provider value={cartContext}>
